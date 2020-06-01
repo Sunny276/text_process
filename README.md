@@ -1,2 +1,2 @@
 # text_process
-Give me a star!!!
+it's my first time load code on github, it will mean a lot for me if you give me a star.
