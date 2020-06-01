@@ -1,2 +1,2 @@
 # text_process
-it's my first time load code to github, it will mean a lot for me if you give me a star.
+it's my first time upload code to github, it will mean a lot if you give me a star.
