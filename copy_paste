@@ -1,5 +1,6 @@
 """
-删除字符串中的空格和回车
+txt_ver2 删除字符串中的空格和回车
+MathType_latex() 将MathType 文字处理好给Latex
 """
 import pyperclip
 import win32clipboard as wc
@@ -66,4 +67,5 @@ def MathType_latex():
 
 
 if __name__ == '__main__':
+# 选择需要的函数
     MathType_latex()
