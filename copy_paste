@@ -1,0 +1,69 @@
+"""
+删除字符串中的空格和回车
+"""
+import pyperclip
+import win32clipboard as wc
+import win32con
+
+
+
+def txt_ver2():
+    """删除空格和换行符"""
+    # 开始剪切板操作
+    wc.OpenClipboard()
+    # 尝试将剪贴板内容读取为unicode文本
+    txt = wc.GetClipboardData(win32con.CF_UNICODETEXT)
+    txt = str(txt).strip()
+    # 将字符串按行分割
+    txt = txt.splitlines()
+    n = len(txt)
+    # 用空格拼接每行
+    txt = ' '.join(txt)
+    # 将所有长度大于 1 的空白符转化为 1 个空格
+    txt = ' '.join(txt.split())
+    """
+    将空格转换为逗号
+    for i in range(n):
+        txt[i] = ','.join(txt[i].split())
+    txt = '\n'.join(txt)
+    """
+    # 清空剪贴板
+    wc.EmptyClipboard()
+    # 将处理好的文本以unicode文本形式放入剪贴板
+    wc.SetClipboardData(win32con.CF_UNICODETEXT, txt)
+    # 关闭剪切板
+    wc.CloseClipboard()
+    print('删除了{}个换行符\n'.format(n))
+
+
+def MathType_latex():
+    """Mathtype换成Latex格式操作"""
+    # 开始剪切板操作
+    wc.OpenClipboard()
+    # 尝试将剪贴板内容读取为unicode文本
+    txt = wc.GetClipboardData(win32con.CF_UNICODETEXT)
+    txt = str(txt).strip()
+    # 将字符串按行分割存储在txt list中
+    txt = txt.splitlines()
+    n = len(txt)
+    for i in range(n):
+        tmp_list = txt[i].split()
+        if tmp_list[0] != "%":
+            new_str = txt.pop(i)
+            continue
+    new_str_list = new_str.split()
+    new_str_list.insert(0, '\\begin{equation}\n')
+    new_str_list[-1] += '\n'
+    new_str_list.append('\\end{equation}')
+    print(new_str_list)
+    new_str = ''.join(new_str_list)
+    # 清空剪贴板
+    wc.EmptyClipboard()
+    # 将处理好的文本以unicode文本形式放入剪贴板
+    wc.SetClipboardData(win32con.CF_UNICODETEXT, new_str)
+    # 关闭剪切板
+    wc.CloseClipboard()
+
+
+if __name__ == '__main__':
+    MathType_latex()
